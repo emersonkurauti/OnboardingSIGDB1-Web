@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "OnboardingSIGDB1-Web"
+    }
+  },
+  "defaultProject": "OnboardingSIGDB1-Web",
+  "cli": {
+    "analytics": false
+  }
 }
