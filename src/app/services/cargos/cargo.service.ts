@@ -1,4 +1,4 @@
-import { Cargo } from './../models/Cargo';
+import { Cargo } from './../../models/Cargo';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -17,5 +17,9 @@ export class CargoService {
 
   getEventoById(id: number): Observable<Cargo> {
     return this.http.get<Cargo>(`${this.baseUrl}/${id}`);
+  }
+
+  postCargo(cargo: Cargo) {
+    return this.http.post(this.baseUrl, cargo);
   }
 }

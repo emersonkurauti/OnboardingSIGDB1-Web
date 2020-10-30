@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Cadastro de Cargos</h1>
+  <hr/>
+  <form [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Descrição</label>
+        <input type="text" class="form-control" 
+          [ngClass]="{'is-invalid': form.get('descricao').errors && form.get('descricao').touched}"
+          formControlName="descricao" placeholder="Descrição...">
+        <div *ngIf="form.get('descricao').hasError('required') && form.get('descricao').touched" class="invalid-feedback">
+          Descrição obrigatóra.
+        </div>
+        <div *ngIf="form.get('descricao').hasError('maxlength') && form.get('descricao').touched" class="invalid-feedback">
+          Tamanho máximo de 250 caracteres.
+        </div>
+      </div>
+    </div> 
+  </form>
+  <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="salvar()">
+    Salvar
+  </button>
+  <button class="btn btn-secondary" (click)="cancel()">
+    Voltar
+  </button>
+</div>

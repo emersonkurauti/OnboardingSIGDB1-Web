@@ -1,13 +1,13 @@
+import { CargoService } from './../../services/cargos/cargo.service';
+import { Cargo } from './../../models/Cargo';
 import { Component, OnInit } from '@angular/core';
-import { Cargo } from '../models/Cargo';
-import { CargoService } from '../services/cargo.service';
 
 @Component({
-  selector: 'app-cargos',
-  templateUrl: './cargos.component.html',
-  styleUrls: ['./cargos.component.scss']
+  selector: 'app-cargos-read',
+  templateUrl: './cargos-read.component.html',
+  styleUrls: ['./cargos-read.component.scss']
 })
-export class CargosComponent implements OnInit {
+export class CargosReadComponent implements OnInit {
 
   cargos: Cargo[];
 
@@ -25,5 +25,4 @@ export class CargosComponent implements OnInit {
       error => { console.log(error); }
     );
   }
-
 }
