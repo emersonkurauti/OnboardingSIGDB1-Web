@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CargosReadComponent implements OnInit {
 
+  fadeShow = 'fade';
   cargos: Cargo[];
 
   constructor(private cargoService: CargoService) { }
@@ -24,5 +25,16 @@ export class CargosReadComponent implements OnInit {
       },
       error => { console.log(error); }
     );
+  }
+
+  excluir(cargo: Cargo): void {
+    this.cargoService.deleteCargo(cargo.id).subscribe(response => {
+      this.cargos.splice(this.cargos.indexOf(cargo), 1);
+      this.fadeShow = 'show';
+    });
+  }
+
+  fecharAlerta(): void {
+    this.fadeShow = 'fade';
   }
 }

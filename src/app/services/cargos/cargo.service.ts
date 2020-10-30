@@ -27,4 +27,9 @@ export class CargoService {
     const url = `${this.baseUrl}/${cargo.id}`;
     return this.http.put<Cargo>(url, cargo);
   }
+
+  deleteCargo(id: number) {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<Cargo>(url);
+  }
 }

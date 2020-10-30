@@ -31,7 +31,7 @@
             <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
                 role="menu" aria-labelledby="button-basic">
               <li role="menuitem"><a class="dropdown-item" routerLink="/cargos/update/{{cargo.id}}">Editar</a></li>
-              <li role="menuitem"><a class="dropdown-item" href="#">Excluir</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="excluir(cargo)">Excluir</a></li>
             </ul>
           </div>
         </td>
@@ -45,4 +45,11 @@
       </tr>
     </tfoot>
   </table>
+  <div class="alert alert-success alert-dismissible {{fadeShow}}"
+        role="alert">
+    <strong>Cargo</strong> excluído com sucesso.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="fecharAlerta()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 </div>
