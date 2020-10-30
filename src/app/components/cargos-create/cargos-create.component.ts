@@ -1,7 +1,7 @@
 import { CargoService } from './../../services/cargos/cargo.service';
 import { Cargo } from './../../models/Cargo';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,11 +22,7 @@ export class CargosCreateComponent implements OnInit {
 
   salvar(): void {
     this.cargo = Object.assign({}, this.form.value);
-    this.cargoService.postCargo(this.cargo).subscribe(
-      (novoCargo: Cargo) => {
-        this.router.navigate(['cargos']);
-      }
-    );
+    this.cargoService.postCargo(this.cargo).subscribe(response => this.router.navigate(['cargos']));
   }
 
   validar(): void {

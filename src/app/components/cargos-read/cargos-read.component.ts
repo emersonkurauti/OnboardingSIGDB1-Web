@@ -18,7 +18,7 @@ export class CargosReadComponent implements OnInit {
   }
 
   getCargos() {
-    this.cargoService.getEvento().subscribe(
+    this.cargoService.getCargos().subscribe(
       (cargos: Cargo[]) => { 
         this.cargos = cargos;
       },

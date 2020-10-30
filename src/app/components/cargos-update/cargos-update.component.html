@@ -1,13 +1,18 @@
 <div class="container">
-  <h1>Cadastro de Cargo</h1>
+  <h1>Alteração de Cargo</h1>
   <hr/>
   <form [formGroup]="form">
     <div class="form-row">
+      <div class="form-group col-md-1">
+        <label>Código</label>
+        <input type="text" class="form-control" disabled formControlName="id" [(ngModel)]="cargo.id">
+      </div>
       <div class="form-group col-md-12">
         <label>Descrição</label>
         <input type="text" class="form-control" 
           [ngClass]="{'is-invalid': form.get('descricao').errors && form.get('descricao').touched}"
-          formControlName="descricao" placeholder="Descrição...">
+          formControlName="descricao" placeholder="Descrição..."
+          [(ngModel)]="cargo.descricao">
         <div *ngIf="form.get('descricao').hasError('required') && form.get('descricao').touched" class="invalid-feedback">
           Descrição obrigatóra.
         </div>
@@ -17,8 +22,8 @@
       </div>
     </div> 
   </form>
-  <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="salvar()">
-    Salvar
+  <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="alterar()">
+    Alterar
   </button>
   <button class="btn btn-secondary" (click)="cancel()">
     Voltar

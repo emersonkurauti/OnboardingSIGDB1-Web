@@ -11,15 +11,20 @@ export class CargoService {
   baseUrl = 'http://localhost:54544/api/cargo';
   constructor(private http: HttpClient) { }
 
-  getEvento(): Observable<Cargo[]> {
+  getCargos(): Observable<Cargo[]> {
     return this.http.get<Cargo[]>(this.baseUrl);
   }
 
-  getEventoById(id: number): Observable<Cargo> {
+  getCargoById(id: number): Observable<Cargo> {
     return this.http.get<Cargo>(`${this.baseUrl}/${id}`);
   }
 
   postCargo(cargo: Cargo) {
     return this.http.post(this.baseUrl, cargo);
+  }
+
+  putCargo(cargo: Cargo) {
+    const url = `${this.baseUrl}/${cargo.id}`;
+    return this.http.put<Cargo>(url, cargo);
   }
 }
