@@ -1,6 +1,6 @@
 import { CargoService } from './../../services/cargos/cargo.service';
 import { Cargo } from './../../models/Cargo';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DebugElement } from '@angular/core';
 
 @Component({
   selector: 'app-cargos-read',
@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class CargosReadComponent implements OnInit {
 
   fadeShow = 'fade';
+  descCargoExcluido: string;
   cargos: Cargo[];
 
   constructor(private cargoService: CargoService) { }
@@ -28,6 +29,7 @@ export class CargosReadComponent implements OnInit {
   }
 
   excluir(cargo: Cargo): void {
+    this.descCargoExcluido = cargo.descricao;
     this.cargoService.deleteCargo(cargo.id).subscribe(response => {
       this.cargos.splice(this.cargos.indexOf(cargo), 1);
       this.fadeShow = 'show';
