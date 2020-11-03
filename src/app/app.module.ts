@@ -1,3 +1,5 @@
+import { DateFormatPipePipe } from './utils/DateFormatPipe.pipe';
+import { DateTimeFormatPipePipe } from './utils/DateTimeFormatPipe.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -20,6 +22,8 @@ import { CargosUpdateComponent } from './components/cargos-update/cargos-update.
 import { EmpresasCrudComponent } from './views/empresas-crud/empresas-crud.component';
 import { EmpresasReadComponent } from './components/empresas-read/empresas-read.component';
 
+import { EmpresaService } from './services/empresas/empresa.service';
+
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 defineLocale('pt-br', ptBrLocale);
@@ -29,6 +33,8 @@ defineLocale('pt-br', ptBrLocale);
     AppComponent,
     HomeComponent,
     NavegacaoComponent,
+    DateTimeFormatPipePipe,
+    DateFormatPipePipe,
     CargosCrudComponent,
     CargosReadComponent,
     CargosCreateComponent,
@@ -48,7 +54,9 @@ defineLocale('pt-br', ptBrLocale);
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    EmpresaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
