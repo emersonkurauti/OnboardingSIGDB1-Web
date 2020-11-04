@@ -34,8 +34,7 @@
       </div>
       <div class="form-group col-md-2">
         <label>Data Fundação</label>
-        <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control" 
-          [ngClass]="{'is-invalid': form.get('dataFundacao').errors && form.get('dataFundacao').touched}"
+        <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control"
           formControlName="dataFundacao" placeholder="dd/mm/aaaa" [(ngModel)]="empresa.dataFundacao">
       </div>
     </div> 
