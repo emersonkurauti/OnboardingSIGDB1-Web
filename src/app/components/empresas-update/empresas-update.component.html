@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Alteração de Empresa</h1>
+  <hr/>
+  <form [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-1">
+        <label>Código</label>
+        <input type="text" class="form-control" disabled formControlName="id" [(ngModel)]="empresa.id">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Nome</label>
+        <input type="text" class="form-control" 
+          [ngClass]="{'is-invalid': form.get('nome').errors && form.get('nome').touched}"
+          formControlName="nome" placeholder="Nome..." [(ngModel)]="empresa.nome">
+        <div *ngIf="form.get('nome').hasError('required') && form.get('nome').touched" class="invalid-feedback">
+          Nome obrigatóro.
+        </div>
+        <div *ngIf="form.get('nome').hasError('maxlength') && form.get('nome').touched" class="invalid-feedback">
+          Tamanho máximo de 150 caracteres.
+        </div>
+      </div>
+    </div> 
+    <div class="form-row">
+      <div class="form-group col-md-10">
+        <label>CNPJ</label>
+        <input type="text" class="form-control" 
+          [ngClass]="{'is-invalid': form.get('cnpj').errors && form.get('cnpj').touched}"
+          formControlName="cnpj" placeholder="00.000.000/0000-00" [(ngModel)]="empresa.cnpj">
+        <div *ngIf="form.get('cnpj').hasError('required') && form.get('cnpj').touched" class="invalid-feedback">
+          CNPJ obrigatóro.
+        </div>
+      </div>
+      <div class="form-group col-md-2">
+        <label>Data Fundação</label>
+        <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control" 
+          [ngClass]="{'is-invalid': form.get('dataFundacao').errors && form.get('dataFundacao').touched}"
+          formControlName="dataFundacao" placeholder="dd/mm/aaaa" [(ngModel)]="empresa.dataFundacao">
+      </div>
+    </div> 
+  </form>
+  <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="alterar()">
+    Alterar
+  </button>
+  <button class="btn btn-secondary" (click)="cancel()">
+    Voltar
+  </button>
+</div>
