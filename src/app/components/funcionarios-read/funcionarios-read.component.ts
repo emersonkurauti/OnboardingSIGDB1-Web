@@ -1,5 +1,5 @@
+import { FuncionarioConsulta } from './../../models/FuncionarioConsulta';
 import { FuncionarioService } from './../../services/funcionario/funcionario.service';
-import { Funcionario } from './../../models/Funcionario';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +15,7 @@ export class FuncionariosReadComponent implements OnInit {
   nomeFuncionarioExcluido: string;
   formFiltro: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
-  funcionarios: Funcionario[];
+  funcionarios: FuncionarioConsulta[];
 
   constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder) { }
 
@@ -27,7 +27,7 @@ export class FuncionariosReadComponent implements OnInit {
   montarFiltro(): void {
     this.formFiltro = this.fb.group({
       nome: [''],
-      cnpj: [''],
+      cpf: [''],
       dataInicio: [''],
       dataFim: ['']
     });
@@ -35,14 +35,14 @@ export class FuncionariosReadComponent implements OnInit {
 
   getFuncionarios() {
     this.funcionarioService.getFuncionarios().subscribe(
-      (funcionarios: Funcionario[]) => {
+      (funcionarios: FuncionarioConsulta[]) => {
         this.funcionarios = funcionarios;
       },
       error => { console.log(error); }
     );
   }
 
-  excluir(funcionario: Funcionario): void {
+  excluir(funcionario: FuncionarioConsulta): void {
     this.nomeFuncionarioExcluido = funcionario.nome;
     this.funcionarioService.deleteFuncionario(funcionario.id).subscribe(response => {
       this.funcionarios.splice(this.funcionarios.indexOf(funcionario), 1);

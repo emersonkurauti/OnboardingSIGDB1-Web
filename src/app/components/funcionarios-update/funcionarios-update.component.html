@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>Alteração de Funcionário</h1>
+  <hr/>
+  <form [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-1">
+        <label>Código</label>
+        <input type="text" class="form-control" disabled formControlName="id" [(ngModel)]="funcionario.id">
+        <input type="text" class="form-control" disabled formControlName="empresaId" [(ngModel)]="funcionario.empresaId" type="hidden">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Nome</label>
+        <input type="text" class="form-control" 
+          [ngClass]="{'is-invalid': form.get('nome').errors && form.get('nome').touched}"
+          formControlName="nome" placeholder="Nome..." [(ngModel)]="funcionario.nome">
+        <div *ngIf="form.get('nome').hasError('required') && form.get('nome').touched" class="invalid-feedback">
+          Nome obrigatóro.
+        </div>
+        <div *ngIf="form.get('nome').hasError('maxlength') && form.get('nome').touched" class="invalid-feedback">
+          Tamanho máximo de 150 caracteres.
+        </div>
+      </div>
+    </div> 
+    <div class="form-row">
+      <div class="form-group col-md-10">
+        <label>CPF</label>
+        <input type="text" class="form-control" 
+          [ngClass]="{'is-invalid': form.get('cpf').errors && form.get('cpf').touched}"
+          formControlName="cpf" placeholder="00.000.000/0000-00" [(ngModel)]="funcionario.cpf">
+        <div *ngIf="form.get('cpf').hasError('required') && form.get('cpf').touched" class="invalid-feedback">
+          CPF obrigatóro.
+        </div>
+      </div>
+      <div class="form-group col-md-2">
+        <label>Data Fundação</label>
+        <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control"
+          formControlName="dataContratacao" placeholder="dd/mm/aaaa" [(ngModel)]="funcionario.dataContratacao">
+      </div>
+    </div> 
+  </form>
+  <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="alterar()">
+    Alterar
+  </button>
+  <button class="btn btn-secondary" (click)="cancel()">
+    Voltar
+  </button>
+</div>
