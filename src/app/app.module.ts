@@ -21,6 +21,7 @@ import { CargosCreateComponent } from './components/cargos-create/cargos-create.
 import { CargosUpdateComponent } from './components/cargos-update/cargos-update.component';
 import { EmpresasCrudComponent } from './views/empresas-crud/empresas-crud.component';
 import { EmpresasReadComponent } from './components/empresas-read/empresas-read.component';
+import { EmpresasCreateComponent } from './components/empresas-create/empresas-create.component';
 
 import { EmpresaService } from './services/empresas/empresa.service';
 
@@ -40,7 +41,8 @@ defineLocale('pt-br', ptBrLocale);
     CargosCreateComponent,
     CargosUpdateComponent,
     EmpresasCrudComponent,
-    EmpresasReadComponent
+    EmpresasReadComponent,
+    EmpresasCreateComponent
    ],
   imports: [
     BrowserModule,

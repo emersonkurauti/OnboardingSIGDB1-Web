@@ -15,4 +15,11 @@ export class EmpresaService {
     return this.http.get<Empresa[]>(this.baseUrl);
   }
 
+  getEmpresaById(id: number): Observable<Empresa> {
+    return this.http.get<Empresa>(`${this.baseUrl}/${id}`);
+  }
+
+  postEmpresa(empresa: Empresa) {
+    return this.http.post(this.baseUrl, empresa);
+  }
 }
