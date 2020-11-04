@@ -6,4 +6,5 @@ export interface Funcionario {
     cpf: string;
     dataContratacao: string;
     empresa: Empresa;
+    cargoDescricao: string;
 }
