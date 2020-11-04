@@ -11,6 +11,8 @@ import { Empresa } from './../../models/Empresa';
 })
 export class EmpresasReadComponent implements OnInit {
 
+  fadeShow = 'fade';
+  nomeEmpresaExcluida: string;
   formFiltro: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
   empresas: Empresa[];
@@ -41,11 +43,11 @@ export class EmpresasReadComponent implements OnInit {
   }
 
   excluir(empresa: Empresa): void {
-    /*this.descCargoExcluido = cargo.descricao;
-    this.cargoService.deleteCargo(cargo.id).subscribe(response => {
-      this.cargos.splice(this.cargos.indexOf(cargo), 1);
+    this.nomeEmpresaExcluida = empresa.nome;
+    this.empresaService.deleteEmpresa(empresa.id).subscribe(response => {
+      this.empresas.splice(this.empresas.indexOf(empresa), 1);
       this.fadeShow = 'show';
-    });*/
+    });
   }
 
 }

@@ -22,4 +22,9 @@ export class EmpresaService {
   postEmpresa(empresa: Empresa) {
     return this.http.post(this.baseUrl, empresa);
   }
+
+  deleteEmpresa(id: number) {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<Empresa>(url);
+  }
 }
