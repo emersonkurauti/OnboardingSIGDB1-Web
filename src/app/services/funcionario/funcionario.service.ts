@@ -14,4 +14,13 @@ export class FuncionarioService {
   getFuncionarios(): Observable<Funcionario[]> {
     return this.http.get<Funcionario[]>(this.baseUrl);
   }
+
+  postFuncionario(funcionario: Funcionario) {
+    return this.http.post(this.baseUrl, funcionario);
+  }
+
+  deleteFuncionario(id: number) {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<Funcionario>(url);
+  }
 }

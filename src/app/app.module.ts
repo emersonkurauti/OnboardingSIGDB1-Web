@@ -1,3 +1,4 @@
+import { FuncionariosCreateComponent } from './components/funcionarios-create/funcionarios-create.component';
 import { FuncionariosReadComponent } from './components/funcionarios-read/funcionarios-read.component';
 import { FuncionariosCrudComponent } from './views/funcionarios-crud/funcionarios-crud.component';
 import { DateFormatPipePipe } from './utils/DateFormatPipe.pipe';
@@ -48,7 +49,8 @@ defineLocale('pt-br', ptBrLocale);
     EmpresasCreateComponent,
     EmpresasUpdateComponent,
     FuncionariosCrudComponent,
-    FuncionariosReadComponent
+    FuncionariosReadComponent,
+    FuncionariosCreateComponent
    ],
   imports: [
     BrowserModule,

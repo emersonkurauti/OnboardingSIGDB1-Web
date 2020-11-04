@@ -42,5 +42,11 @@ export class FuncionariosReadComponent implements OnInit {
     );
   }
 
-  excluir(funcionario: Funcionario): void {}
+  excluir(funcionario: Funcionario): void {
+    this.nomeFuncionarioExcluido = funcionario.nome;
+    this.funcionarioService.deleteFuncionario(funcionario.id).subscribe(response => {
+      this.funcionarios.splice(this.funcionarios.indexOf(funcionario), 1);
+      this.fadeShow = 'show';
+    });
+  }
 }

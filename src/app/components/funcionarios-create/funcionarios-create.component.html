@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Cadastro de Empresa</h1>
+  <h1>Cadastro de Funcionário</h1>
   <hr/>
   <form [formGroup]="form">
     <div class="form-row">
@@ -18,18 +18,18 @@
     </div> 
     <div class="form-row">
       <div class="form-group col-md-10">
-        <label>CNPJ</label>
+        <label>CPF</label>
         <input type="text" class="form-control" 
-          [ngClass]="{'is-invalid': form.get('cnpj').errors && form.get('cnpj').touched}"
-          formControlName="cnpj" placeholder="00.000.000/0000-00">
-        <div *ngIf="form.get('cnpj').hasError('required') && form.get('cnpj').touched" class="invalid-feedback">
-          CNPJ obrigatóro.
+          [ngClass]="{'is-invalid': form.get('cpf').errors && form.get('cpf').touched}"
+          formControlName="cpf" placeholder="000.000.000-00">
+        <div *ngIf="form.get('cpf').hasError('required') && form.get('cpf').touched" class="invalid-feedback">
+          CPF obrigatóro.
         </div>
       </div>
       <div class="form-group col-md-2">
-        <label>Data Fundação</label>
+        <label>Data Contratação</label>
         <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control" 
-          formControlName="dataFundacao" placeholder="dd/mm/aaaa">
+          formControlName="dataContratacao" placeholder="dd/mm/aaaa">
       </div>
     </div> 
   </form>
