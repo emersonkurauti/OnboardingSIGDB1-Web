@@ -1,3 +1,4 @@
+import { FuncionarioEmpresa } from './../../models/FuncionarioEmpresa';
 import { Funcionario } from './../../models/Funcionario';
 import { FuncionarioConsulta } from './../../models/FuncionarioConsulta';
 import { HttpClient } from '@angular/common/http';
@@ -27,6 +28,11 @@ export class FuncionarioService {
   putFuncionario(funcionario: Funcionario) {
     const url = `${this.baseUrl}/${funcionario.id}`;
     return this.http.put<Funcionario>(url, funcionario);
+  }
+
+  patchFuncionario(funcionarioEmpresa: FuncionarioEmpresa) {
+    const url = `${this.baseUrl}/${funcionarioEmpresa.id}`;
+    return this.http.patch<FuncionarioEmpresa>(url, funcionarioEmpresa);
   }
 
   deleteFuncionario(id: number) {

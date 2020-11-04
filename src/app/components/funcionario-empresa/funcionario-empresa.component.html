@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Vincular Funcionário a uma Empresa</h1>
+  <hr/>
+  <form [formGroup]="form">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nome</label>
+        <input type="text" class="form-control" disabled formControlName="nome" [(ngModel)]="funcionario.nome">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Empresa</label>
+        <input [(ngModel)]="selectedValue" [typeahead]="empresas"
+          typeaheadOptionField="nome"
+          (typeaheadOnSelect)="onSelect($event)"
+          formControlName="empresaNome"
+          placeholder="Selecione a Empresa..."
+          class="form-control">
+      </div>
+    </div> 
+  </form>
+  <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="vincular()">
+    Vincular
+  </button>
+  <button class="btn btn-secondary" (click)="cancel()">
+    Voltar
+  </button>
+</div>
+{{funcionarioEmpresa.empresaId}}
+{{funcionarioEmpresa.id}}

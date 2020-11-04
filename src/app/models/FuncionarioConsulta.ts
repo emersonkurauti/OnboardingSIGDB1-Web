@@ -1,6 +1,6 @@
 import { Empresa } from './Empresa';
 
-export interface FuncionarioConsulta {
+export class FuncionarioConsulta {
     id: number;
     nome: string;
     cpf: string;

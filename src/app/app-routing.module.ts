@@ -1,3 +1,4 @@
+import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
 import { FuncionariosUpdateComponent } from './components/funcionarios-update/funcionarios-update.component';
 import { FuncionariosCreateComponent } from './components/funcionarios-create/funcionarios-create.component';
 import { FuncionariosCrudComponent } from './views/funcionarios-crud/funcionarios-crud.component';
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'funcionarios/update/:id',
     component: FuncionariosUpdateComponent
+  },
+  {
+    path: 'funcionarios/empresa/:id',
+    component: FuncionarioEmpresaComponent
   }
 ];
 

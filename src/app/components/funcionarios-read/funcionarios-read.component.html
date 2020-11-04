@@ -69,7 +69,7 @@
                 role="menu" aria-labelledby="button-basic">
               <li role="menuitem"><a class="dropdown-item" routerLink="/funcionarios/update/{{funcionario.id}}">Editar</a></li>
               <li role="menuitem"><a class="dropdown-item" (click)="excluir(funcionario)">Excluir</a></li>
-              <li role="menuitem"><a class="dropdown-item" routerLink="/funcionarios/empresa/{{funcionario.id}}">Vincular Empresa</a></li>
+              <li *ngIf="!funcionario?.empresaNome" role="menuitem"><a class="dropdown-item" routerLink="/funcionarios/empresa/{{funcionario.id}}">Vincular Empresa</a></li>
               <li role="menuitem"><a class="dropdown-item" routerLink="/funcionarios/cargo/{{funcionario.id}}">Vincular Cargo</a></li>
             </ul>
           </div>

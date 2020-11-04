@@ -1,3 +1,4 @@
+import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
 import { DateFormatPipePipe } from './utils/DateFormatPipe.pipe';
 import { DateTimeFormatPipePipe } from './utils/DateTimeFormatPipe.pipe';
 import { BrowserModule } from '@angular/platform-browser';
@@ -6,8 +7,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +29,6 @@ import { FuncionariosCrudComponent } from './views/funcionarios-crud/funcionario
 import { FuncionariosUpdateComponent } from './components/funcionarios-update/funcionarios-update.component';
 import { FuncionariosCreateComponent } from './components/funcionarios-create/funcionarios-create.component';
 import { FuncionariosReadComponent } from './components/funcionarios-read/funcionarios-read.component';
-
 
 import { EmpresaService } from './services/empresas/empresa.service';
 
@@ -53,7 +54,8 @@ defineLocale('pt-br', ptBrLocale);
     FuncionariosCrudComponent,
     FuncionariosReadComponent,
     FuncionariosCreateComponent,
-    FuncionariosUpdateComponent
+    FuncionariosUpdateComponent,
+    FuncionarioEmpresaComponent
    ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ defineLocale('pt-br', ptBrLocale);
     BsDatepickerModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
