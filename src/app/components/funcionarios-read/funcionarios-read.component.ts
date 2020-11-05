@@ -3,6 +3,7 @@ import { FuncionarioService } from './../../services/funcionario/funcionario.ser
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-funcionarios-read',
@@ -11,13 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FuncionariosReadComponent implements OnInit {
 
-  fadeShow = 'fade';
-  nomeFuncionarioExcluido: string;
   formFiltro: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
   funcionarios: FuncionarioConsulta[];
 
-  constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder) { }
+  constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getFuncionarios();
@@ -43,10 +42,14 @@ export class FuncionariosReadComponent implements OnInit {
   }
 
   excluir(funcionario: FuncionarioConsulta): void {
-    this.nomeFuncionarioExcluido = funcionario.nome;
     this.funcionarioService.deleteFuncionario(funcionario.id).subscribe(response => {
       this.funcionarios.splice(this.funcionarios.indexOf(funcionario), 1);
-      this.fadeShow = 'show';
+      this.toastr.success('Operação realizada com sucesso!', `Exclusão do funcionário ${funcionario.nome}.`);
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na Exclusão do funcionário  ${funcionario.nome}.`);
+      });
     });
   }
 }

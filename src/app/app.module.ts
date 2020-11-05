@@ -1,20 +1,24 @@
-import { DateFormatPipePipe } from './utils/DateFormatPipe.pipe';
-import { DateTimeFormatPipePipe } from './utils/DateTimeFormatPipe.pipe';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { ToastrModule } from 'ngx-toastr';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavegacaoComponent } from './navegacao/navegacao.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { DateFormatPipePipe } from './utils/DateFormatPipe.pipe';
+import { DateTimeFormatPipePipe } from './utils/DateTimeFormatPipe.pipe';
+import { NavegacaoComponent } from './navegacao/navegacao.component';
 import { HomeComponent } from './views/home/home.component';
 import { CargosCrudComponent } from './views/cargos-crud/cargos-crud.component';
 import { CargosReadComponent } from './components/cargos-read/cargos-read.component';
@@ -30,11 +34,8 @@ import { FuncionariosCreateComponent } from './components/funcionarios-create/fu
 import { FuncionariosReadComponent } from './components/funcionarios-read/funcionarios-read.component';
 import { FuncionarioCargoComponent } from './components/funcionario-cargo/funcionario-cargo.component';
 import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
-
 import { EmpresaService } from './services/empresas/empresa.service';
 
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { ptBrLocale } from 'ngx-bootstrap/locale';
 defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
@@ -66,6 +67,7 @@ defineLocale('pt-br', ptBrLocale);
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     TypeaheadModule.forRoot(),
+    ToastrModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

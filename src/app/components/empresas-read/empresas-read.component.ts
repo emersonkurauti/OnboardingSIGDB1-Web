@@ -3,6 +3,7 @@ import { EmpresaService } from './../../services/empresas/empresa.service';
 import { Component, OnInit } from '@angular/core';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Empresa } from './../../models/Empresa';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-empresas-read',
@@ -11,13 +12,11 @@ import { Empresa } from './../../models/Empresa';
 })
 export class EmpresasReadComponent implements OnInit {
 
-  fadeShow = 'fade';
-  nomeEmpresaExcluida: string;
   formFiltro: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
   empresas: Empresa[];
 
-  constructor(private empresaService: EmpresaService, private fb: FormBuilder) { }
+  constructor(private empresaService: EmpresaService, private fb: FormBuilder, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getEmpresas();
@@ -43,10 +42,14 @@ export class EmpresasReadComponent implements OnInit {
   }
 
   excluir(empresa: Empresa): void {
-    this.nomeEmpresaExcluida = empresa.nome;
     this.empresaService.deleteEmpresa(empresa.id).subscribe(response => {
       this.empresas.splice(this.empresas.indexOf(empresa), 1);
-      this.fadeShow = 'show';
+      this.toastr.success('Operação realizada com sucesso!', `Exclusão da empresa ${empresa.nome}.`);
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na Exclusão da empresa  ${empresa.nome}.`);
+      });
     });
   }
 
