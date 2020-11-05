@@ -16,7 +16,11 @@
           (typeaheadOnSelect)="onSelect($event)"
           formControlName="empresaNome"
           placeholder="Selecione a Empresa..."
-          class="form-control">
+          class="form-control"
+          [ngClass]="{'is-invalid': form.get('empresaNome').errors && form.get('empresaNome').touched}">
+        <div *ngIf="form.get('empresaNome').hasError('required') && form.get('empresaNome').touched" class="invalid-feedback">
+          Empresa obrigatóra.
+        </div>
       </div>
     </div> 
   </form>

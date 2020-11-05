@@ -39,7 +39,7 @@ export class FuncionarioCargoComponent implements OnInit {
     this.form = this.fb.group({
       nome: [''],
       cargoDescricao: ['', [Validators.required]],
-      dataVinculo: ['']
+      dataVinculo: ['', [Validators.required]]
     });
   }
 

@@ -16,14 +16,22 @@
           (typeaheadOnSelect)="onSelect($event)"
           formControlName="cargoDescricao"
           placeholder="Selecione o cargo..."
-          class="form-control">
+          class="form-control"
+          [ngClass]="{'is-invalid': form.get('cargoDescricao').errors && form.get('cargoDescricao').touched}">
+        <div *ngIf="form.get('cargoDescricao').hasError('required') && form.get('cargoDescricao').touched" class="invalid-feedback">
+          Cargo obrigatóro.
+        </div>
       </div>
     </div> 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>Data Vínculo</label>
         <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control" 
-          formControlName="dataVinculo" placeholder="dd/mm/aaaa">
+          formControlName="dataVinculo" placeholder="dd/mm/aaaa"
+          [ngClass]="{'is-invalid': form.get('dataVinculo').errors && form.get('dataVinculo').touched}">
+        <div *ngIf="form.get('dataVinculo').hasError('required') && form.get('dataVinculo').touched" class="invalid-feedback">
+          Data de vínculo obrigatóra.
+        </div>
       </div>
     </div>
   </form>
