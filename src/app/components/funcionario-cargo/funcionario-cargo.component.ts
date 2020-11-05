@@ -7,6 +7,7 @@ import { Cargo } from 'src/app/models/Cargo';
 import { FuncionarioCargo } from 'src/app/models/FuncionarioCargo';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-funcionario-cargo',
@@ -24,7 +25,7 @@ export class FuncionarioCargoComponent implements OnInit {
   selectedOption: Cargo;
 
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
-              private route: ActivatedRoute, private cargoService: CargoService) { }
+              private route: ActivatedRoute, private cargoService: CargoService, private toastr: ToastrService) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -45,7 +46,15 @@ export class FuncionarioCargoComponent implements OnInit {
 
   vincular(): void {
     this.funcionarioCargo = new FuncionarioCargo(this.selectedOption.id, this.funcionario.id, this.form.get('dataVinculo').value);
-    this.funcionarioService.postFuncionarioCargo(this.funcionarioCargo).subscribe(response => this.router.navigate(['funcionarios']));
+    this.funcionarioService.postFuncionarioCargo(this.funcionarioCargo).subscribe(response => {
+      this.router.navigate(['funcionarios']);
+      this.toastr.success(`${this.funcionario.nome} vinculado com ${this.selectedOption.descricao}.`, 'Operação realizada com sucesso!');
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na vinculação do cargo ${this.selectedOption.descricao}.`);
+      });
+    });
   }
 
   onSelect(event: TypeaheadMatch): void {

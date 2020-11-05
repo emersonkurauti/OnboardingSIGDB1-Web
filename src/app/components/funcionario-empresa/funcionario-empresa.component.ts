@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/models/Funcionario';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-funcionario-empresa',
@@ -24,7 +25,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
   selectedOption: Empresa;
 
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
-              private route: ActivatedRoute, private empresaService: EmpresaService) { }
+              private route: ActivatedRoute, private empresaService: EmpresaService, private toastr: ToastrService) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -44,7 +45,15 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
   vincular(): void {
     this.funcionarioEmpresa = new FuncionarioEmpresa(this.funcionario.id, this.selectedOption.id);
-    this.funcionarioService.patchFuncionario(this.funcionarioEmpresa).subscribe(response => this.router.navigate(['funcionarios']));
+    this.funcionarioService.patchFuncionario(this.funcionarioEmpresa).subscribe(response => {
+      this.router.navigate(['funcionarios']);
+      this.toastr.success(`${this.funcionario.nome} vinculado com ${this.selectedOption.nome}.`, 'Operação realizada com sucesso!');
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na vinculação da empresa ${this.selectedOption.nome}.`);
+      });
+    });
   }
 
   onSelect(event: TypeaheadMatch): void {

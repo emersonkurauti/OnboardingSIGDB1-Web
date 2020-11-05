@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Funcionario } from 'src/app/models/Funcionario';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-funcionarios-update',
@@ -17,7 +18,7 @@ export class FuncionariosUpdateComponent implements OnInit {
   funcionario: Funcionario;
 
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
-              private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe) { }
+              private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe, private toastr: ToastrService) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -30,7 +31,15 @@ export class FuncionariosUpdateComponent implements OnInit {
 
   alterar(): void {
     this.funcionario = Object.assign({}, this.form.value);
-    this.funcionarioService.putFuncionario(this.funcionario).subscribe(response => this.router.navigate(['funcionarios']));
+    this.funcionarioService.putFuncionario(this.funcionario).subscribe(response => {
+      this.router.navigate(['funcionarios']);
+      this.toastr.success(`Alteração do funcionário ${this.funcionario.nome}.`, 'Operação realizada com sucesso!');
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na alteração do funcionário ${this.funcionario.nome}.`);
+      });
+    });
   }
 
   validar(): void {

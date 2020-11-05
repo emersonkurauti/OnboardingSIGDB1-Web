@@ -3,6 +3,7 @@ import { Funcionario } from 'src/app/models/Funcionario';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-funcionarios-create',
@@ -14,7 +15,8 @@ export class FuncionariosCreateComponent implements OnInit {
   form: FormGroup;
   funcionario: Funcionario;
 
-  constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService) { }
+  constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.validar();
@@ -22,7 +24,15 @@ export class FuncionariosCreateComponent implements OnInit {
 
   salvar(): void {
     this.funcionario = Object.assign({}, this.form.value);
-    this.funcionarioService.postFuncionario(this.funcionario).subscribe(response => this.router.navigate(['funcionarios']));
+    this.funcionarioService.postFuncionario(this.funcionario).subscribe(response => {
+      this.router.navigate(['funcionarios']);
+      this.toastr.success(`Inclusão do funcionário ${this.funcionario.nome}.`, 'Operação realizada com sucesso!');
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na inclusão do funcionário ${this.funcionario.nome}.`);
+      });
+    });
   }
 
   validar(): void {

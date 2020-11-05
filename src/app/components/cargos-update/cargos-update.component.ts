@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Cargo } from 'src/app/models/Cargo';
 import { CargoService } from 'src/app/services/cargos/cargo.service';
 
@@ -14,7 +15,8 @@ export class CargosUpdateComponent implements OnInit {
   form: FormGroup;
   cargo: Cargo;
 
-  constructor(private router: Router, private fb: FormBuilder, private cargoService: CargoService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private fb: FormBuilder, private cargoService: CargoService, private route: ActivatedRoute,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -26,7 +28,15 @@ export class CargosUpdateComponent implements OnInit {
 
   alterar(): void {
     this.cargo = Object.assign({}, this.form.value);
-    this.cargoService.putCargo(this.cargo).subscribe(response => this.router.navigate(['cargos']));
+    this.cargoService.putCargo(this.cargo).subscribe(response => {
+      this.router.navigate(['cargos']);
+      this.toastr.success(`Alteração do cargo ${this.cargo.descricao}.`, 'Operação realizada com sucesso!');
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na alteração do cargo ${this.cargo.descricao}.`);
+      });
+    });
   }
 
   validar(): void {

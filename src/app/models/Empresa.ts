@@ -2,5 +2,5 @@ export class Empresa {
     id: number;
     nome: string;
     cnpj: string;
-    dataFundacao: string;
+    dataFundacao: Date;
 }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Empresa } from './../../models/Empresa';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-empresas-update',
@@ -16,8 +17,8 @@ export class EmpresasUpdateComponent implements OnInit {
   form: FormGroup;
   empresa: Empresa;
 
-  constructor(private router: Router, private fb: FormBuilder, private empresaService: EmpresaService, 
-              private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe) { }
+  constructor(private router: Router, private fb: FormBuilder, private empresaService: EmpresaService,
+              private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe, private toastr: ToastrService) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -30,7 +31,15 @@ export class EmpresasUpdateComponent implements OnInit {
 
   alterar(): void {
     this.empresa = Object.assign({}, this.form.value);
-    this.empresaService.putEmpresa(this.empresa).subscribe(response => this.router.navigate(['empresas']));
+    this.empresaService.putEmpresa(this.empresa).subscribe(response => {
+      this.router.navigate(['empresas']);
+      this.toastr.success(`Alteração da empresa ${this.empresa.nome}.`, 'Operação realizada com sucesso!');
+    },
+    error => {
+      error.error.forEach(erro => {
+        this.toastr.error(erro.message, `Falha na alteração da empresa ${this.empresa.nome}.`);
+      });
+    });
   }
 
   validar(): void {
