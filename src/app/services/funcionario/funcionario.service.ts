@@ -1,8 +1,9 @@
+import { Funcoes } from './../../utils/Funcoes';
 import { FuncionarioCargo } from './../../models/FuncionarioCargo';
 import { FuncionarioEmpresa } from './../../models/FuncionarioEmpresa';
 import { Funcionario } from './../../models/Funcionario';
 import { FuncionarioConsulta } from './../../models/FuncionarioConsulta';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -20,6 +21,34 @@ export class FuncionarioService {
 
   getFuncionarioById(id: number): Observable<Funcionario> {
     return this.http.get<Funcionario>(`${this.baseUrl}/${id}`);
+  }
+
+  getFuncionariosPesquisa(cpf: string, nome: string, dtInicio: Date, dtFim: Date): Observable<FuncionarioConsulta[]> {
+    let filtro = '';
+
+    if (cpf) {
+      filtro = Funcoes.addFiltro(filtro, 'cpf', cpf);
+    }
+
+    if (nome) {
+      filtro = Funcoes.addFiltro(filtro, 'nome', nome);
+    }
+
+    if (dtInicio) {
+      filtro = Funcoes.addFiltro(filtro, 'dtInicio', dtInicio);
+    }
+
+    if (dtFim) {
+      filtro = Funcoes.addFiltro(filtro, 'dtFim', dtFim);
+    }
+
+    const options = {
+      params: new HttpParams({
+        fromString: filtro
+      })
+    };
+
+    return this.http.get<FuncionarioConsulta[]>(`${this.baseUrl}/pesquisar`, options);
   }
 
   postFuncionario(funcionario: Funcionario) {

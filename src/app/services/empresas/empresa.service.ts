@@ -1,5 +1,7 @@
+import { Funcoes } from './../../utils/Funcoes';
+import { FormControl } from '@angular/forms';
 import { Empresa } from './../../models/Empresa';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -17,6 +19,34 @@ export class EmpresaService {
 
   getEmpresaById(id: number): Observable<Empresa> {
     return this.http.get<Empresa>(`${this.baseUrl}/${id}`);
+  }
+
+  getEmpresaPesquisa(cnpj: string, nome: string, dtInicio: Date, dtFim: Date): Observable<Empresa[]> {
+    let filtro = '';
+
+    if (cnpj) {
+      filtro = Funcoes.addFiltro(filtro, 'cnpj', cnpj);
+    }
+
+    if (nome) {
+      filtro = Funcoes.addFiltro(filtro, 'nome', nome);
+    }
+
+    if (dtInicio) {
+      filtro = Funcoes.addFiltro(filtro, 'dtInicio', dtInicio);
+    }
+
+    if (dtFim) {
+      filtro = Funcoes.addFiltro(filtro, 'dtFim', dtFim);
+    }
+
+    const options = {
+      params: new HttpParams({
+        fromString: filtro
+      })
+    };
+
+    return this.http.get<Empresa[]>(`${this.baseUrl}/pesquisar`, options);
   }
 
   postEmpresa(empresa: Empresa) {

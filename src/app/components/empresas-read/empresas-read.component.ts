@@ -1,3 +1,4 @@
+import { DateFormatConsultaPipePipe } from './../../utils/DateFormatConsultaPipe.pipe';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EmpresaService } from './../../services/empresas/empresa.service';
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-empresas-read',
   templateUrl: './empresas-read.component.html',
-  styleUrls: ['./empresas-read.component.scss']
+  styleUrls: ['./empresas-read.component.scss'],
+  providers: [DateFormatConsultaPipePipe]
 })
 export class EmpresasReadComponent implements OnInit {
 
@@ -16,7 +18,8 @@ export class EmpresasReadComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   empresas: Empresa[];
 
-  constructor(private empresaService: EmpresaService, private fb: FormBuilder, private toastr: ToastrService) { }
+  constructor(private empresaService: EmpresaService, private fb: FormBuilder, private toastr: ToastrService,
+              private dateFormatPipe: DateFormatConsultaPipePipe) { }
 
   ngOnInit() {
     this.getEmpresas();
@@ -53,4 +56,14 @@ export class EmpresasReadComponent implements OnInit {
     });
   }
 
+  filtrar(): void {
+    const dtInicio = this.dateFormatPipe.transform(this.formFiltro.get('dataInicio').value);
+    const dtFim = this.dateFormatPipe.transform(this.formFiltro.get('dataFim').value);
+    this.empresaService.getEmpresaPesquisa(
+      this.formFiltro.get('cnpj').value, this.formFiltro.get('nome').value, dtInicio, dtFim)
+      .subscribe(
+        (response: Empresa[]) => {
+          this.empresas = response;
+        });
+  }
 }
