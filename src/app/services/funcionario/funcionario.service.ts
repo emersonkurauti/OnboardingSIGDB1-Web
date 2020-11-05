@@ -1,3 +1,4 @@
+import { FuncionarioCargo } from './../../models/FuncionarioCargo';
 import { FuncionarioEmpresa } from './../../models/FuncionarioEmpresa';
 import { Funcionario } from './../../models/Funcionario';
 import { FuncionarioConsulta } from './../../models/FuncionarioConsulta';
@@ -23,6 +24,11 @@ export class FuncionarioService {
 
   postFuncionario(funcionario: Funcionario) {
     return this.http.post(this.baseUrl, funcionario);
+  }
+
+  postFuncionarioCargo(funcionarioCargo: FuncionarioCargo) {
+    const url = `${this.baseUrl}${'cargo'}`;
+    return this.http.post(url, funcionarioCargo);
   }
 
   putFuncionario(funcionario: Funcionario) {

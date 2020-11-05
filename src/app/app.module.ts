@@ -1,4 +1,3 @@
-import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
 import { DateFormatPipePipe } from './utils/DateFormatPipe.pipe';
 import { DateTimeFormatPipePipe } from './utils/DateTimeFormatPipe.pipe';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +28,8 @@ import { FuncionariosCrudComponent } from './views/funcionarios-crud/funcionario
 import { FuncionariosUpdateComponent } from './components/funcionarios-update/funcionarios-update.component';
 import { FuncionariosCreateComponent } from './components/funcionarios-create/funcionarios-create.component';
 import { FuncionariosReadComponent } from './components/funcionarios-read/funcionarios-read.component';
+import { FuncionarioCargoComponent } from './components/funcionario-cargo/funcionario-cargo.component';
+import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
 
 import { EmpresaService } from './services/empresas/empresa.service';
 
@@ -55,7 +56,8 @@ defineLocale('pt-br', ptBrLocale);
     FuncionariosReadComponent,
     FuncionariosCreateComponent,
     FuncionariosUpdateComponent,
-    FuncionarioEmpresaComponent
+    FuncionarioEmpresaComponent,
+    FuncionarioCargoComponent
    ],
   imports: [
     BrowserModule,

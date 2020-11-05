@@ -1,3 +1,4 @@
+import { FuncionarioCargoComponent } from './components/funcionario-cargo/funcionario-cargo.component';
 import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
 import { FuncionariosUpdateComponent } from './components/funcionarios-update/funcionarios-update.component';
 import { FuncionariosCreateComponent } from './components/funcionarios-create/funcionarios-create.component';
@@ -56,6 +57,10 @@ const routes: Routes = [
   {
     path: 'funcionarios/empresa/:id',
     component: FuncionarioEmpresaComponent
+  },
+  {
+    path: 'funcionarios/cargos/:id',
+    component: FuncionarioCargoComponent
   }
 ];
 

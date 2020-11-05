@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Vincular Funcionário a uma Empresa</h1>
+  <h1>Vincular Funcionário a um Cargo</h1>
   <hr/>
   <form [formGroup]="form">
     <div class="form-row">
@@ -10,15 +10,22 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label>Empresa</label>
-        <input [(ngModel)]="selectedValue" [typeahead]="empresas"
-          typeaheadOptionField="nome"
+        <label>Cargo</label>
+        <input [(ngModel)]="selectedValue" [typeahead]="cargos"
+          typeaheadOptionField="descricao"
           (typeaheadOnSelect)="onSelect($event)"
-          formControlName="empresaNome"
-          placeholder="Selecione a Empresa..."
+          formControlName="cargoDescricao"
+          placeholder="Selecione o cargo..."
           class="form-control">
       </div>
     </div> 
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Data Vínculo</label>
+        <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control" 
+          formControlName="dataVinculo" placeholder="dd/mm/aaaa">
+      </div>
+    </div>
   </form>
   <button class="btn btn-primary" style="margin-right: 5px;" [disabled]="!form.valid" (click)="vincular()">
     Vincular
