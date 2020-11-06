@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/">OnboardingSIGDB1-Web</a>
+    <a class="navbar-brand" routerLink="/">OnboardingSIGDB1-Web</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barraNavegacao" 
       aria-controls="barraNavegacao" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,13 +8,13 @@
 
     <div class="collapse navbar-collapse" id="barraNavegacao">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/empresas">Empresas</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/empresas">Empresas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/funcionarios">Funcionários</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/funcionarios">Funcionários</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/cargos">Cargos</a>
         </li>
       </ul>
