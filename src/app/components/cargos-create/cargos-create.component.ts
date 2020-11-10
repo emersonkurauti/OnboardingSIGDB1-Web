@@ -23,7 +23,6 @@ export class CargosCreateComponent implements OnInit {
   }
 
   salvar(): void {
-    this.cargo = Object.assign({}, this.form.value);
     this.cargoService.postCargo(this.cargo).subscribe(response => {
       this.router.navigate(['cargos']);
       this.toastr.success(`Inclusão do cargo ${this.cargo.descricao}.`, 'Operação realizada com sucesso!');

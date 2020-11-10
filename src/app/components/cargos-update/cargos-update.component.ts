@@ -19,7 +19,6 @@ export class CargosUpdateComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.cargo = new Cargo();
     const id = +this.route.snapshot.paramMap.get('id');
     this.cargoService.getCargoById(id).subscribe(cargo => {
       this.form.get('id').setValue(cargo.id);

@@ -28,7 +28,6 @@ export class FuncionarioEmpresaComponent implements OnInit {
               private route: ActivatedRoute, private empresaService: EmpresaService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.funcionario = new Funcionario();
     const id = +this.route.snapshot.paramMap.get('id');
     this.funcionarioService.getFuncionarioById(id).subscribe(funcionario => {
       this.form.get('nome').setValue(funcionario.nome);

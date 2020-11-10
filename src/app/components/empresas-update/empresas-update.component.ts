@@ -21,7 +21,6 @@ export class EmpresasUpdateComponent implements OnInit {
               private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.empresa = new Empresa();
     const id = +this.route.snapshot.paramMap.get('id');
     this.empresaService.getEmpresaById(id).subscribe(empresa => {
       empresa.dataFundacao = this.dateFormatPipe.transform(empresa.dataFundacao);

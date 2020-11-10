@@ -21,7 +21,6 @@ export class FuncionariosUpdateComponent implements OnInit {
               private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.funcionario = new Funcionario();
     const id = +this.route.snapshot.paramMap.get('id');
     this.funcionarioService.getFuncionarioById(id).subscribe(funcionario => {
       funcionario.dataContratacao = this.dateFormatPipe.transform(funcionario.dataContratacao);
