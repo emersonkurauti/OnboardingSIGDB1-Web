@@ -35,6 +35,9 @@ import { FuncionariosReadComponent } from './components/funcionarios-read/funcio
 import { FuncionarioCargoComponent } from './components/funcionario-cargo/funcionario-cargo.component';
 import { FuncionarioEmpresaComponent } from './components/funcionario-empresa/funcionario-empresa.component';
 import { EmpresaService } from './services/empresas/empresa.service';
+import { FuncionarioService } from './services/funcionario/funcionario.service';
+import { CargoService } from './services/cargos/cargo.service';
+import { APP_BASE_HREF } from '@angular/common';
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -75,11 +78,14 @@ defineLocale('pt-br', ptBrLocale);
     ReactiveFormsModule
   ],
   providers: [
-    EmpresaService
+    EmpresaService,
+    CargoService,
+    FuncionarioService,
+    { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor(private localeService: BsLocaleService) {
     this.localeService.use('pt-br');
   }

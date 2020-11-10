@@ -18,7 +18,7 @@ export class CargosCreateComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private cargoService: CargoService,
               private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.validar();
   }
 

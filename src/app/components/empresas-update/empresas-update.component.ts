@@ -20,10 +20,15 @@ export class EmpresasUpdateComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private empresaService: EmpresaService,
               private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe, private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.empresa = new Empresa();
     const id = +this.route.snapshot.paramMap.get('id');
     this.empresaService.getEmpresaById(id).subscribe(empresa => {
       empresa.dataFundacao = this.dateFormatPipe.transform(empresa.dataFundacao);
+      this.form.get('id').setValue(empresa.id);
+      this.form.get('nome').setValue(empresa.nome);
+      this.form.get('cnpj').setValue(empresa.cnpj);
+      this.form.get('dataFundacao').setValue(empresa.dataFundacao);
       this.empresa = empresa;
     });
     this.validar();
@@ -44,7 +49,7 @@ export class EmpresasUpdateComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      id: [''],
+      id: [{value: '', disabled: true}],
       nome: ['', [Validators.required, Validators.maxLength(150)]],
       cnpj: ['', Validators.required],
       dataFundacao: ['']

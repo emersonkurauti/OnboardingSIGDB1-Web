@@ -18,7 +18,7 @@ export class FuncionariosCreateComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
               private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.validar();
   }
 

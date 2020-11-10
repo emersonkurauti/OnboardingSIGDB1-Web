@@ -5,7 +5,7 @@
     <div class="form-row">
       <div class="form-group col-md-1">
         <label>Código</label>
-        <input type="text" class="form-control" disabled formControlName="id" [(ngModel)]="empresa.id">
+        <input type="text" class="form-control" formControlName="id">
       </div>
     </div>
     <div class="form-row">
@@ -13,7 +13,7 @@
         <label>Nome</label>
         <input type="text" class="form-control" 
           [ngClass]="{'is-invalid': form.get('nome').errors && form.get('nome').touched}"
-          formControlName="nome" placeholder="Nome..." [(ngModel)]="empresa.nome">
+          formControlName="nome" placeholder="Nome...">
         <div *ngIf="form.get('nome').hasError('required') && form.get('nome').touched" class="invalid-feedback">
           Nome obrigatóro.
         </div>
@@ -27,7 +27,7 @@
         <label>CNPJ</label>
         <input type="text" class="form-control" 
           [ngClass]="{'is-invalid': form.get('cnpj').errors && form.get('cnpj').touched}"
-          formControlName="cnpj" placeholder="00.000.000/0000-00" [(ngModel)]="empresa.cnpj">
+          formControlName="cnpj" placeholder="00.000.000/0000-00">
         <div *ngIf="form.get('cnpj').hasError('required') && form.get('cnpj').touched" class="invalid-feedback">
           CNPJ obrigatóro.
         </div>
@@ -35,7 +35,7 @@
       <div class="form-group col-md-2">
         <label>Data Fundação</label>
         <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control"
-          formControlName="dataFundacao" placeholder="dd/mm/aaaa" [(ngModel)]="empresa.dataFundacao">
+          formControlName="dataFundacao" placeholder="dd/mm/aaaa">
       </div>
     </div> 
   </form>

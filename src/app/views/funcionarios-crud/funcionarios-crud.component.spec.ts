@@ -1,20 +1,17 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FuncionariosCrudComponent } from './funcionarios-crud.component';
+import { AppModule } from 'src/app/app.module';
 
 describe('FuncionariosCrudComponent', () => {
   let component: FuncionariosCrudComponent;
   let fixture: ComponentFixture<FuncionariosCrudComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ FuncionariosCrudComponent ]
+      imports: [ AppModule ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FuncionariosCrudComponent);

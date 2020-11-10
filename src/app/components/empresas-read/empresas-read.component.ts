@@ -21,7 +21,7 @@ export class EmpresasReadComponent implements OnInit {
   constructor(private empresaService: EmpresaService, private fb: FormBuilder, private toastr: ToastrService,
               private dateFormatPipe: DateFormatConsultaPipePipe) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getEmpresas();
     this.montarFiltro();
   }
@@ -35,7 +35,7 @@ export class EmpresasReadComponent implements OnInit {
     });
   }
 
-  getEmpresas() {
+  getEmpresas(): void {
     this.empresaService.getEmpresas().subscribe(
       (empresas: Empresa[]) => {
         this.empresas = empresas;

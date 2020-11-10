@@ -18,7 +18,8 @@ export class EmpresasCreateComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private empresaService: EmpresaService,
               private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.empresa = new Empresa();
     this.validar();
   }
 

@@ -3,7 +3,6 @@ import { Cargo } from './../../models/Cargo';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
   selector: 'app-cargos-read',
   templateUrl: './cargos-read.component.html',
@@ -15,13 +14,13 @@ export class CargosReadComponent implements OnInit {
 
   constructor(private cargoService: CargoService, private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getCargos();
   }
 
   getCargos() {
     this.cargoService.getCargos().subscribe(
-      (cargos: Cargo[]) => { 
+      (cargos: Cargo[]) => {
         this.cargos = cargos;
       },
       error => { console.log(error); }

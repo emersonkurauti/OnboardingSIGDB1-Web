@@ -20,10 +20,16 @@ export class FuncionariosUpdateComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
               private route: ActivatedRoute, private dateFormatPipe: DateFormatPipePipe, private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.funcionario = new Funcionario();
     const id = +this.route.snapshot.paramMap.get('id');
     this.funcionarioService.getFuncionarioById(id).subscribe(funcionario => {
       funcionario.dataContratacao = this.dateFormatPipe.transform(funcionario.dataContratacao);
+      this.form.get('id').setValue(funcionario.id);
+      this.form.get('nome').setValue(funcionario.nome);
+      this.form.get('cpf').setValue(funcionario.cpf);
+      this.form.get('dataContratacao').setValue(funcionario.dataContratacao);
+      this.form.get('empresaId').setValue(funcionario.empresaId);
       this.funcionario = funcionario;
     });
     this.validar();
@@ -44,11 +50,11 @@ export class FuncionariosUpdateComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      id: [''],
+      id: [{value: '', disabled: true}],
       nome: ['', [Validators.required, Validators.maxLength(150)]],
       cpf: ['', Validators.required],
       dataContratacao: [''],
-      empresaId: ['']
+      empresaId: [{value: '', disabled: true}]
     });
   }
 

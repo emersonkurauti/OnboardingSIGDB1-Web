@@ -27,9 +27,11 @@ export class FuncionarioEmpresaComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
               private route: ActivatedRoute, private empresaService: EmpresaService, private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.funcionario = new Funcionario();
     const id = +this.route.snapshot.paramMap.get('id');
     this.funcionarioService.getFuncionarioById(id).subscribe(funcionario => {
+      this.form.get('nome').setValue(funcionario.nome);
       this.funcionario = funcionario;
     });
     this.validar();
@@ -38,7 +40,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      nome: [''],
+      nome: [{value: '', disabled: true}],
       empresaNome: ['', [Validators.required]]
     });
   }
@@ -58,6 +60,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
+    this.form.get('empresaNome').setValue(this.selectedValue);
   }
 
   cancel(): void {

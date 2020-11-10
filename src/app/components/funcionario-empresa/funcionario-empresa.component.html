@@ -5,13 +5,13 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>Nome</label>
-        <input type="text" class="form-control" disabled formControlName="nome" [(ngModel)]="funcionario.nome">
+        <input type="text" class="form-control" formControlName="nome">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>Empresa</label>
-        <input [(ngModel)]="selectedValue" [typeahead]="empresas"
+        <input [typeahead]="empresas"
           typeaheadOptionField="nome"
           (typeaheadOnSelect)="onSelect($event)"
           formControlName="empresaNome"

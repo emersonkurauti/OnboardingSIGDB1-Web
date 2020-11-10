@@ -5,8 +5,8 @@
     <div class="form-row">
       <div class="form-group col-md-1">
         <label>Código</label>
-        <input type="text" class="form-control" disabled formControlName="id" [(ngModel)]="funcionario.id">
-        <input type="text" class="form-control" disabled formControlName="empresaId" [(ngModel)]="funcionario.empresaId" type="hidden">
+        <input type="text" class="form-control" formControlName="id">
+        <input type="text" class="form-control" formControlName="empresaId" type="hidden">
       </div>
     </div>
     <div class="form-row">
@@ -14,7 +14,7 @@
         <label>Nome</label>
         <input type="text" class="form-control" 
           [ngClass]="{'is-invalid': form.get('nome').errors && form.get('nome').touched}"
-          formControlName="nome" placeholder="Nome..." [(ngModel)]="funcionario.nome">
+          formControlName="nome" placeholder="Nome...">
         <div *ngIf="form.get('nome').hasError('required') && form.get('nome').touched" class="invalid-feedback">
           Nome obrigatóro.
         </div>
@@ -28,7 +28,7 @@
         <label>CPF</label>
         <input type="text" class="form-control" 
           [ngClass]="{'is-invalid': form.get('cpf').errors && form.get('cpf').touched}"
-          formControlName="cpf" placeholder="00.000.000/0000-00" [(ngModel)]="funcionario.cpf">
+          formControlName="cpf" placeholder="00.000.000/0000-00">
         <div *ngIf="form.get('cpf').hasError('required') && form.get('cpf').touched" class="invalid-feedback">
           CPF obrigatóro.
         </div>
@@ -36,7 +36,7 @@
       <div class="form-group col-md-2">
         <label>Data Fundação</label>
         <input type="text" bsDatepicker [bsConfig]="{containerClass:'theme-blue'}" class="form-control"
-          formControlName="dataContratacao" placeholder="dd/mm/aaaa" [(ngModel)]="funcionario.dataContratacao">
+          formControlName="dataContratacao" placeholder="dd/mm/aaaa">
       </div>
     </div> 
   </form>

@@ -1,11 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async } from '@angular/core/testing';
 import { DateFormatPipePipe } from './DateFormatPipe.pipe';
 
 describe('Pipe: DateFormatPipee', () => {
   it('create an instance', () => {
-    let pipe = new DateFormatPipePipe();
+    const pipe = new DateFormatPipePipe('pt-br');
     expect(pipe).toBeTruthy();
   });
 });

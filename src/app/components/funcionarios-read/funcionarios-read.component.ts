@@ -21,7 +21,7 @@ export class FuncionariosReadComponent implements OnInit {
   constructor(private funcionarioService: FuncionarioService, private fb: FormBuilder, private toastr: ToastrService,
               private dateFormatPipe: DateFormatConsultaPipePipe) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getFuncionarios();
     this.montarFiltro();
   }

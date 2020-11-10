@@ -1,20 +1,31 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { AppRoutingModule } from './../../app-routing.module';
+import { AppModule } from 'src/app/app.module';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CargosUpdateComponent } from './cargos-update.component';
+import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 
 describe('CargosUpdateComponent', () => {
   let component: CargosUpdateComponent;
   let fixture: ComponentFixture<CargosUpdateComponent>;
+  let activatedRouteSpy: any;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
+    activatedRouteSpy = {
+      snapshot: {
+        paramMap: convertToParamMap({
+          id: '6'
+        })
+      }
+    };
+
     TestBed.configureTestingModule({
-      declarations: [ CargosUpdateComponent ]
+      imports: [ AppModule ],
+      providers: [
+        { provide: ActivatedRoute, useValue: activatedRouteSpy },
+        { provide: Router, useValue: AppRoutingModule } ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CargosUpdateComponent);

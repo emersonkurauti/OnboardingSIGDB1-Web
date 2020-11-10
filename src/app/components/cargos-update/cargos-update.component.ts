@@ -18,9 +18,12 @@ export class CargosUpdateComponent implements OnInit {
   constructor(private router: Router, private fb: FormBuilder, private cargoService: CargoService, private route: ActivatedRoute,
               private toastr: ToastrService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.cargo = new Cargo();
     const id = +this.route.snapshot.paramMap.get('id');
     this.cargoService.getCargoById(id).subscribe(cargo => {
+      this.form.get('id').setValue(cargo.id);
+      this.form.get('descricao').setValue(cargo.descricao);
       this.cargo = cargo;
     });
     this.validar();
@@ -41,7 +44,7 @@ export class CargosUpdateComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      id: [],
+      id: [{value: '', disabled: true}],
       descricao: ['', [Validators.required, Validators.maxLength(250)]]
     });
   }
