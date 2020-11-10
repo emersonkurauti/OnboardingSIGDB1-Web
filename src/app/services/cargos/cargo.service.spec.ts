@@ -1,11 +1,11 @@
-/* tslint:disable:no-unused-variable */
-
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { AppModule } from 'src/app/app.module';
 import { CargoService } from './cargo.service';
 
 describe('Service: Cargo', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [AppModule],
       providers: [CargoService]
     });
   });
