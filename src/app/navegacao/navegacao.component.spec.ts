@@ -3,9 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavegacaoComponent } from './navegacao.component';
 
 describe('NavegacaoComponent', () => {
-  let component: NavegacaoComponent;
-  let fixture: ComponentFixture<NavegacaoComponent>;
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ AppModule ]
@@ -13,13 +10,26 @@ describe('NavegacaoComponent', () => {
     .compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NavegacaoComponent);
-    component = fixture.componentInstance;
+  it('should create', () => {
+    const fixture = TestBed.createComponent(NavegacaoComponent);
+    const component = fixture.componentInstance;
     fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should render nav', () => {
+    const fixture = TestBed.createComponent(NavegacaoComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const nav = compiled.querySelector('nav');
+    expect(nav).toBeTruthy();
+  });
+
+  it('should render navbar-brand', () => {
+    const fixture = TestBed.createComponent(NavegacaoComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const nav = compiled.querySelector('.navbar-brand');
+    expect(nav.textContent).toBe('OnboardingSIGDB1-Web');
   });
 });
