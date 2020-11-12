@@ -43,7 +43,7 @@ export class CargosUpdateComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      id: [{value: '', disabled: true}],
+      id: [{ disabled: true }],
       descricao: ['', [Validators.required, Validators.maxLength(250)]]
     });
   }

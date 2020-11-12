@@ -39,7 +39,7 @@ export class FuncionarioCargoComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      nome: [{value: '', disabled: true}],
+      nome: [{ disabled: true }],
       cargoDescricao: ['', [Validators.required]],
       dataVinculo: ['', [Validators.required]]
     });

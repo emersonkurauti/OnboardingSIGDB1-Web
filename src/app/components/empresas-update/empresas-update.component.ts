@@ -48,7 +48,7 @@ export class EmpresasUpdateComponent implements OnInit {
 
   validar(): void {
     this.form = this.fb.group({
-      id: [{value: '', disabled: true}],
+      id: [{ disabled: true }],
       nome: ['', [Validators.required, Validators.maxLength(150)]],
       cnpj: ['', Validators.required],
       dataFundacao: ['']
