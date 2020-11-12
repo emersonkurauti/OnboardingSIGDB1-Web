@@ -20,8 +20,6 @@ export class FuncionarioCargoComponent implements OnInit {
   funcionario: Funcionario;
   cargos: Cargo[];
   funcionarioCargo: FuncionarioCargo;
-
-  selectedValue: string;
   selectedOption: Cargo;
 
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
@@ -60,7 +58,7 @@ export class FuncionarioCargoComponent implements OnInit {
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
-    this.form.get('cargoDescricao').setValue(this.selectedValue);
+    this.form.get('cargoDescricao').setValue(event.item.nome);
   }
 
   cancel(): void {

@@ -20,8 +20,6 @@ export class FuncionarioEmpresaComponent implements OnInit {
   funcionario: Funcionario;
   empresas: Empresa[];
   funcionarioEmpresa: FuncionarioEmpresa;
-
-  selectedValue: string;
   selectedOption: Empresa;
 
   constructor(private router: Router, private fb: FormBuilder, private funcionarioService: FuncionarioService,
@@ -59,7 +57,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
-    this.form.get('empresaNome').setValue(this.selectedValue);
+    this.form.get('empresaNome').setValue(event.item.nome);
   }
 
   cancel(): void {
