@@ -58,7 +58,7 @@ export class FuncionarioCargoComponent implements OnInit {
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
-    this.form.get('cargoDescricao').setValue(event.item.nome);
+    this.form.get('cargoDescricao').setValue(event.item.descricao);
   }
 
   cancel(): void {
