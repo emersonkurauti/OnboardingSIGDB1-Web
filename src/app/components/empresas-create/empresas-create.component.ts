@@ -24,6 +24,7 @@ export class EmpresasCreateComponent implements OnInit {
   }
 
   salvar(): void {
+    this.empresa = Object.assign({}, this.form.value);
     this.empresaService.postEmpresa(this.empresa).subscribe(response => {
       this.router.navigate(['empresas']);
       this.toastr.success(`Inclusão da empresa ${this.empresa.nome}.`, 'Operação realizada com sucesso!');

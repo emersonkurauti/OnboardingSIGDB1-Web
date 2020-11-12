@@ -23,6 +23,7 @@ export class FuncionariosCreateComponent implements OnInit {
   }
 
   salvar(): void {
+    this.funcionario = Object.assign({}, this.form.value);
     this.funcionarioService.postFuncionario(this.funcionario).subscribe(response => {
       this.router.navigate(['funcionarios']);
       this.toastr.success(`Inclusão do funcionário ${this.funcionario.nome}.`, 'Operação realizada com sucesso!');
