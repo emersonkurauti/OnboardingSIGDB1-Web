@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "test:watch": "jest --watch",
     "test:ci": "jest -ci --runInBand",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "testcafe": "./node_modules/.bin/testcafe firefox e2e"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "ngx-bootstrap": "^6.1.0",
     "ngx-toastr": "^13.1.0",
     "rxjs": "~6.6.0",
+    "testcafe": "^1.9.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
